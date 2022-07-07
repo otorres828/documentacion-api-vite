@@ -3,13 +3,17 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
-                    <!-- Navigation Links -->
+  
+
+                <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-jet-nav-link href="{{ route('document.index') }}" :active="request()->routeIs('dashboard')">
+                        {{ __('Panel de Control') }}
                     </x-jet-nav-link>
                 </div>
             </div>
+
+            @isset(auth()->user()->id)
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Teams Dropdown -->
@@ -86,11 +90,11 @@
                         <x-slot name="content">
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
+                                {{ __('Configuracion de Cuenta') }}
                             </div>
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
+                                {{ __('Perfil') }}
                             </x-jet-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -107,7 +111,7 @@
 
                                 <x-jet-dropdown-link href="{{ route('logout') }}"
                                          @click.prevent="$root.submit();">
-                                    {{ __('Log Out') }}
+                                    {{ __('Cerrar Sesion') }}
                                 </x-jet-dropdown-link>
                             </form>
                         </x-slot>
@@ -124,6 +128,8 @@
                     </svg>
                 </button>
             </div>
+
+            @endisset
         </div>
     </div>
 
@@ -134,6 +140,7 @@
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
         </div>
+        @isset(auth()->user()->id)
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
@@ -204,5 +211,6 @@
                 @endif
             </div>
         </div>
+        @endisset
     </div>
 </nav>
