@@ -1,6 +1,4 @@
-@extends('layouts.base')
-@section('title', 'Documentacion')
-@section('main')
+<x-app-layout>
     <div class="bg-white font-sans leading-normal">
         {{-- CUERPO --}}
         <div class=" text-gray-700 py-10">
@@ -52,10 +50,5 @@
             </div>
         </div>
     </div>
-@endsection
 
-@section('js')
-<link rel="stylesheet" href="{{ asset('vendor/ckeditor/plugins/codesnippet/lib/highlight/styles/arta.css') }}">
-<script src="{{ asset('vendor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js') }}"></script>
-
-@endsection
+</x-app-layout>
