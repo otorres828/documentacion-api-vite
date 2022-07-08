@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Documentacion;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -55,4 +56,21 @@ class CategoryController extends Controller
         $category->delete();
         return redirect()->route('category.index')->with('delete','La categoria se elimino con exito');
     }
+
+
+    public function crear_reposo(Request $request){
+        $boolean= DB::select("select crear_reposo('.$request->cedula'.)");
+        if($boolean){
+            return response()->json(['message' => 'insersion correcta']);
+        }else{
+            return response()->json(['message' => 'insersion incorrecta, ya tiene reposo']);
+        }
+    }
+
+
+
 }
+
+
+
+
